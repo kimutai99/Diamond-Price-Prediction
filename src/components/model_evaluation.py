@@ -1,6 +1,7 @@
 import os
 import sys
 import pickle
+import numpy as np
 from sklearn.metrics import mean_squared_error, mean_absolute_error, r2_score
 from src.logger import logging
 from src.exception import customexception
