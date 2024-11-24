@@ -9,8 +9,8 @@ from src.logger import logging
 
 from src.exception import customexception
 
-from src.components.data_transformation import DataTransformationConfig
-from src.components.data_transformation import DataTransformation
+# from src.components.data_transformation import DataTransformationConfig
+# from src.components.data_transformation import DataTransformation
 
 from dataclasses import dataclass
 #from pathlib import path
@@ -50,9 +50,9 @@ class DataIngestion:
         except Exception as e:
             logging.info("Exception occured while ingestion the data")
             raise customexception(e,sys)
-if __name__=="__main__":
-    obj=DataIngestion()
-    train_data,test_data= obj.iniatiate_data_ingestion()  
+# if __name__=="__main__":
+#     obj=DataIngestion()
+#     train_data,test_data= obj.iniatiate_data_ingestion()  
     
-    data_transformation=DataTransformation() 
-    data_transformation.iniatiate_data_transformation(train_data,test_data)       
+#     data_transformation=DataTransformation() 
+#     data_transformation.iniatiate_data_transformation(train_data,test_data)       
