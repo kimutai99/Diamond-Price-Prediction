@@ -30,6 +30,7 @@ class DataTransformation:
             clarity_categories = ['I1','SI2','SI1','VS2','VS1','VVS2','VVS1','IF']
             logging.info("Pipeline is iniatiated")
             
+            
             ##Numerical Pipeline
             num_pipeline=Pipeline(
                 steps=[
@@ -81,6 +82,9 @@ class DataTransformation:
 
             logging.info("Saving the preprocessed object as pickle")
             logging.info ("Data transformation completed")
+            
+            logging.info(f"Saving preprocessor object at {self.data_transformation_config.preprocessed_obj_file_path}")
+
             save_object(
                 file_path=self.data_transformation_config.preprocessed_obj_file_path,
                 obj=preprocessing_obj

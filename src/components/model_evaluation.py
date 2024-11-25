@@ -27,7 +27,7 @@ class ModelEvaluation:
             # Split features and target from test array
             X_test, y_test = test_arr[:, :-1], test_arr[:, -1]
              # Load the trained model
-            model_path=os.path.join('Artifacts','Model.pkl')
+            model_path=os.path.join('Artifacts','model.pkl')
             model=load_object(model_path)
             logging.info("loaded the trained model for evaluation")
             
