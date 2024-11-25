@@ -122,6 +122,21 @@ celerybeat.pid
 *.sage.py
 
 # Environments
+# Ignore virtual environments
+/venv/
+
+# Ignore Python bytecode files
+*.pyc
+__pycache__/
+
+# Ignore log files
+*.log
+
+# Ignore Python egg-info directories
+venv/
+*.egg-info/
+
+
 .Artifacts
 .env
 .venv
