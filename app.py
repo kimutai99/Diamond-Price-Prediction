@@ -1,5 +1,9 @@
+import sys
+import os 
 from src.pipeline.predict_pipeline import PredictionPipeline,CustomData
 from flask import Flask,request,jsonify,render_template
+sys.path.append('D:\\Projects\\Diamond Prediction Price\\src')
+
 
 app=Flask(__name__)
 

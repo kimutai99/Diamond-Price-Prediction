@@ -5,9 +5,10 @@ name = "pypi"
 
 [packages]
 flask = "*"
-pandas = "*"
 numpy = "*"
 scikit-learn = "*"
+waitress = "*"
+pandas = "*"
 
 [dev-packages]
 

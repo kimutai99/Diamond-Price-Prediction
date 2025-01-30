@@ -14,7 +14,7 @@ from src.utils.utils import save_object
 
 @dataclass
 class DataTransformationConfig:
-    preprocessed_obj_file_path :str=os.path.join('Artifacts','prepocessed.pkl')
+    preprocessed_obj_file_path :str=os.path.join('Artifacts','preprocessed.pkl')
 class DataTransformation:
     def __init__(self):
         self.data_transformation_config=DataTransformationConfig()
