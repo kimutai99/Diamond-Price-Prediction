@@ -22,7 +22,7 @@ COPY ./src /app/src
 COPY app.py /app/
 
 # Expose the port for the application
-EXPOSE 2020
+EXPOSE 8000
 
 # Use Waitress to serve the app
-ENTRYPOINT ["waitress-serve", "--listen=0.0.0.0:2020", "app:app"]
+ENTRYPOINT ["waitress-serve", "--listen=0.0.0.0:8000", "app:app"]
