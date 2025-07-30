@@ -5,14 +5,23 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Diamond Price Prediction Result</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         :root {
-            --primary: #2563eb;
-            --primary-dark: #1d4ed8;
+            --primary: #3b82f6;
+            --primary-dark: #2563eb;
+            --primary-light: #93c5fd;
             --secondary: #10b981;
+            --secondary-dark: #059669;
             --dark: #1e293b;
+            --darker: #0f172a;
             --light: #f8fafc;
+            --lighter: #ffffff;
             --gray: #94a3b8;
+            --gray-light: #e2e8f0;
+            --border-radius: 12px;
+            --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
         }
         
         * {
@@ -30,82 +39,145 @@
             align-items: center;
             min-height: 100vh;
             padding: 2rem;
+            line-height: 1.6;
         }
         
         .result-card {
-            background: white;
-            border-radius: 16px;
-            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+            background: var(--lighter);
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow);
             padding: 3rem;
             text-align: center;
             max-width: 600px;
             width: 100%;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .result-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 8px;
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
         }
         
         .result-icon {
             font-size: 4rem;
             margin-bottom: 1.5rem;
-            color: var(--secondary);
+            color: var(--primary);
+            display: inline-flex;
+            justify-content: center;
+            align-items: center;
+            width: 100px;
+            height: 100px;
+            background: rgba(59, 130, 246, 0.1);
+            border-radius: 50%;
+            padding: 1.5rem;
         }
         
         .result-title {
-            font-size: 1.5rem;
-            font-weight: 600;
+            font-size: 1.75rem;
+            font-weight: 700;
             margin-bottom: 1rem;
-            color: var(--dark);
+            color: var(--darker);
+            position: relative;
+            display: inline-block;
+        }
+        
+        .result-title::after {
+            content: '';
+            position: absolute;
+            bottom: -8px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 3px;
+            background: var(--secondary);
+            border-radius: 3px;
         }
         
         .result-value {
-            font-size: 3rem;
-            font-weight: 700;
+            font-size: 3.5rem;
+            font-weight: 800;
             margin: 2rem 0;
-            background: linear-gradient(90deg, var(--primary), var(--secondary));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
+            color: var(--darker);
+            position: relative;
+        }
+        
+        .result-value::before {
+            content: '$';
+            font-size: 2rem;
+            vertical-align: super;
+            margin-right: 4px;
+            color: var(--primary);
         }
         
         .result-description {
             color: var(--gray);
-            margin-bottom: 2rem;
+            margin-bottom: 2.5rem;
+            font-size: 1.1rem;
+            max-width: 80%;
+            margin-left: auto;
+            margin-right: auto;
         }
         
         .btn {
             background-color: var(--primary);
             color: white;
             border: none;
-            padding: 0.75rem 1.5rem;
+            padding: 0.875rem 2rem;
             font-size: 1rem;
-            font-weight: 500;
-            border-radius: 8px;
+            font-weight: 600;
+            border-radius: var(--border-radius);
             cursor: pointer;
-            transition: all 0.2s;
+            transition: var(--transition);
             text-decoration: none;
-            display: inline-block;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            box-shadow: 0 4px 6px -1px rgba(59, 130, 246, 0.3), 0 2px 4px -1px rgba(59, 130, 246, 0.2);
         }
         
         .btn:hover {
             background-color: var(--primary-dark);
             transform: translateY(-2px);
+            box-shadow: 0 10px 15px -3px rgba(59, 130, 246, 0.3), 0 4px 6px -2px rgba(59, 130, 246, 0.2);
+        }
+        
+        .btn i {
+            font-size: 1.1rem;
         }
         
         @media (max-width: 600px) {
             .result-card {
-                padding: 2rem;
+                padding: 2.5rem 1.5rem;
             }
             
             .result-value {
-                font-size: 2.5rem;
+                font-size: 2.75rem;
+            }
+            
+            .result-description {
+                max-width: 100%;
             }
         }
     </style>
 </head>
 <body>
     <div class="result-card">
-        <div class="result-icon">💎</div>
-        <h2 class="result-title">Diamond Price Prediction Result</h2>
-        <div class="result-value">${{final_result}}</div>
-        <p class="result-description">This price estimate is based on current market trends and our machine learning model's analysis of similar diamonds.</p>
-        <a href="/" class="btn">Predict Another Diamond</a>
+        <div class="result-icon">
+            <i class="fas fa-gem"></i>
+        </div>
+        <h2 class="result-title">Diamond Price Prediction</h2>
+        <div class="result-value">{{final_result}}</div>
+        <p class="result-description">Our advanced machine learning model has analyzed your diamond specifications to provide this accurate market price estimation.</p>
+        <a href="/" class="btn">
+            <i class="fas fa-redo"></i>
+            Predict Another Diamond
+        </a>
     </div>
 </body>
 </html>

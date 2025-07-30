@@ -5,15 +5,24 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Diamond Price Prediction</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         :root {
-            --primary: #2563eb;
-            --primary-dark: #1d4ed8;
+            --primary: #3b82f6;
+            --primary-dark: #2563eb;
+            --primary-light: #93c5fd;
             --secondary: #10b981;
+            --secondary-dark: #059669;
             --dark: #1e293b;
+            --darker: #0f172a;
             --light: #f8fafc;
+            --lighter: #ffffff;
             --gray: #94a3b8;
-            --border: #e2e8f0;
+            --gray-light: #e2e8f0;
+            --border: #cbd5e1;
+            --border-radius: 12px;
+            --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
         }
         
         * {
@@ -38,120 +47,198 @@
         header {
             text-align: center;
             margin-bottom: 3rem;
+            position: relative;
         }
         
         h1 {
-            font-size: 2.5rem;
-            font-weight: 700;
-            color: var(--dark);
+            font-size: 2.75rem;
+            font-weight: 800;
+            color: var(--darker);
             margin-bottom: 1rem;
+            position: relative;
+            display: inline-block;
+        }
+        
+        h1::after {
+            content: '';
+            position: absolute;
+            bottom: -8px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
             background: linear-gradient(90deg, var(--primary), var(--secondary));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
+            border-radius: 2px;
         }
         
         .subtitle {
             color: var(--gray);
-            font-size: 1.1rem;
-            max-width: 600px;
+            font-size: 1.15rem;
+            max-width: 700px;
             margin: 0 auto;
         }
         
         .card {
-            background: white;
-            border-radius: 12px;
-            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
-            padding: 2rem;
+            background: var(--lighter);
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow);
+            padding: 2.5rem;
             margin-bottom: 2rem;
+            position: relative;
+            overflow: hidden;
+            border: 1px solid var(--gray-light);
+        }
+        
+        .card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 8px;
+            height: 100%;
+            background: linear-gradient(to bottom, var(--primary), var(--secondary));
         }
         
         .form-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 1.5rem;
+            gap: 1.75rem;
         }
         
         .form-group {
             margin-bottom: 1.5rem;
+            position: relative;
         }
         
         label {
             display: block;
-            font-weight: 500;
-            margin-bottom: 0.5rem;
-            color: var(--dark);
+            font-weight: 600;
+            margin-bottom: 0.75rem;
+            color: var(--darker);
+            font-size: 0.95rem;
+        }
+        
+        .input-wrapper {
+            position: relative;
+        }
+        
+        .input-wrapper i {
+            position: absolute;
+            left: 1rem;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--gray);
+            font-size: 1rem;
         }
         
         input[type="text"],
         select {
             width: 100%;
-            padding: 0.75rem 1rem;
+            padding: 0.875rem 1rem 0.875rem 2.5rem;
             border: 1px solid var(--border);
-            border-radius: 8px;
+            border-radius: var(--border-radius);
             font-size: 1rem;
-            transition: all 0.2s;
+            transition: var(--transition);
+            background-color: var(--light);
+            color: var(--darker);
         }
         
         input[type="text"]:focus,
         select:focus {
             outline: none;
             border-color: var(--primary);
-            box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+            box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.2);
+            background-color: var(--lighter);
         }
         
         input[type="text"]::placeholder {
             color: var(--gray);
+            opacity: 0.7;
+        }
+        
+        select {
+            appearance: none;
+            background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
+            background-repeat: no-repeat;
+            background-position: right 1rem center;
+            background-size: 1rem;
         }
         
         .btn {
             background-color: var(--primary);
             color: white;
             border: none;
-            padding: 0.75rem 1.5rem;
+            padding: 1rem 2rem;
             font-size: 1rem;
-            font-weight: 500;
-            border-radius: 8px;
+            font-weight: 600;
+            border-radius: var(--border-radius);
             cursor: pointer;
-            transition: all 0.2s;
+            transition: var(--transition);
             display: inline-flex;
             align-items: center;
             justify-content: center;
+            gap: 8px;
+            box-shadow: 0 4px 6px -1px rgba(59, 130, 246, 0.3), 0 2px 4px -1px rgba(59, 130, 246, 0.2);
         }
         
         .btn:hover {
             background-color: var(--primary-dark);
-            transform: translateY(-1px);
+            transform: translateY(-2px);
+            box-shadow: 0 10px 15px -3px rgba(59, 130, 246, 0.3), 0 4px 6px -2px rgba(59, 130, 246, 0.2);
         }
         
-        .btn:active {
-            transform: translateY(0);
+        .btn i {
+            font-size: 1.1rem;
         }
         
         .btn-submit {
             grid-column: 1 / -1;
             justify-self: center;
             margin-top: 1rem;
-            width: 200px;
+            width: 250px;
         }
         
         .result-container {
-            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            background: linear-gradient(135deg, var(--primary), var(--secondary-dark));
             color: white;
             padding: 3rem;
-            border-radius: 12px;
+            border-radius: var(--border-radius);
             text-align: center;
-            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+            box-shadow: var(--shadow);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .result-container::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -50%;
+            width: 100%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0) 70%);
+            transform: rotate(30deg);
         }
         
         .result-title {
-            font-size: 1.25rem;
+            font-size: 1.5rem;
             margin-bottom: 1rem;
-            font-weight: 500;
+            font-weight: 600;
+            position: relative;
         }
         
         .result-value {
-            font-size: 2.5rem;
-            font-weight: 700;
+            font-size: 3rem;
+            font-weight: 800;
+            position: relative;
+        }
+        
+        .result-value::before {
+            content: '$';
+            font-size: 2rem;
+            vertical-align: super;
+            margin-right: 4px;
+            opacity: 0.8;
         }
         
         @media (max-width: 768px) {
@@ -160,7 +247,19 @@
             }
             
             h1 {
-                font-size: 2rem;
+                font-size: 2.25rem;
+            }
+            
+            .card {
+                padding: 2rem 1.5rem;
+            }
+            
+            .result-container {
+                padding: 2rem;
+            }
+            
+            .result-value {
+                font-size: 2.5rem;
             }
         }
     </style>
@@ -169,7 +268,7 @@
     <div class="container">
         <header>
             <h1>Diamond Price Prediction</h1>
-            <p class="subtitle">Enter the diamond specifications to get an accurate price prediction using our machine learning model</p>
+            <p class="subtitle">Enter your diamond specifications below to receive an accurate market price estimation powered by our machine learning model</p>
         </header>
         
         <div class="card">
@@ -177,76 +276,106 @@
                 <div class="form-grid">
                     <div class="form-group">
                         <label for="carat">Carat Weight</label>
-                        <input type="text" id="carat" name="carat" placeholder="e.g. 1.5" required>
+                        <div class="input-wrapper">
+                            <i class="fas fa-weight-hanging"></i>
+                            <input type="text" id="carat" name="carat" placeholder="e.g. 1.5" required>
+                        </div>
                     </div>
                     
                     <div class="form-group">
                         <label for="depth">Depth (%)</label>
-                        <input type="text" id="depth" name="depth" placeholder="e.g. 62.3" required>
+                        <div class="input-wrapper">
+                            <i class="fas fa-ruler-vertical"></i>
+                            <input type="text" id="depth" name="depth" placeholder="e.g. 62.3" required>
+                        </div>
                     </div>
                     
                     <div class="form-group">
                         <label for="table">Table (%)</label>
-                        <input type="text" id="table" name="table" placeholder="e.g. 58.0" required>
+                        <div class="input-wrapper">
+                            <i class="fas fa-square"></i>
+                            <input type="text" id="table" name="table" placeholder="e.g. 58.0" required>
+                        </div>
                     </div>
                     
                     <div class="form-group">
                         <label for="x">Length (mm)</label>
-                        <input type="text" id="x" name="x" placeholder="e.g. 7.25" required>
+                        <div class="input-wrapper">
+                            <i class="fas fa-ruler-horizontal"></i>
+                            <input type="text" id="x" name="x" placeholder="e.g. 7.25" required>
+                        </div>
                     </div>
                     
                     <div class="form-group">
                         <label for="y">Width (mm)</label>
-                        <input type="text" id="y" name="y" placeholder="e.g. 7.18" required>
+                        <div class="input-wrapper">
+                            <i class="fas fa-ruler-horizontal"></i>
+                            <input type="text" id="y" name="y" placeholder="e.g. 7.18" required>
+                        </div>
                     </div>
                     
                     <div class="form-group">
                         <label for="z">Depth (mm)</label>
-                        <input type="text" id="z" name="z" placeholder="e.g. 4.45" required>
+                        <div class="input-wrapper">
+                            <i class="fas fa-ruler-vertical"></i>
+                            <input type="text" id="z" name="z" placeholder="e.g. 4.45" required>
+                        </div>
                     </div>
                     
                     <div class="form-group">
                         <label for="cut">Cut Quality</label>
-                        <select id="cut" name="cut" required>
-                            <option value="" disabled selected>Select cut quality</option>
-                            <option value="Fair">Fair</option>
-                            <option value="Good">Good</option>
-                            <option value="Very Good">Very Good</option>
-                            <option value="Premium">Premium</option>
-                            <option value="Ideal">Ideal</option>
-                        </select>
+                        <div class="input-wrapper">
+                            <i class="fas fa-cut"></i>
+                            <select id="cut" name="cut" required>
+                                <option value="" disabled selected>Select cut quality</option>
+                                <option value="Fair">Fair</option>
+                                <option value="Good">Good</option>
+                                <option value="Very Good">Very Good</option>
+                                <option value="Premium">Premium</option>
+                                <option value="Ideal">Ideal</option>
+                            </select>
+                        </div>
                     </div>
                     
                     <div class="form-group">
                         <label for="color">Color Grade</label>
-                        <select id="color" name="color" required>
-                            <option value="" disabled selected>Select color grade</option>
-                            <option value="D">D (Colorless)</option>
-                            <option value="E">E (Colorless)</option>
-                            <option value="F">F (Colorless)</option>
-                            <option value="G">G (Near Colorless)</option>
-                            <option value="H">H (Near Colorless)</option>
-                            <option value="I">I (Near Colorless)</option>
-                            <option value="J">J (Near Colorless)</option>
-                        </select>
+                        <div class="input-wrapper">
+                            <i class="fas fa-palette"></i>
+                            <select id="color" name="color" required>
+                                <option value="" disabled selected>Select color grade</option>
+                                <option value="D">D (Colorless)</option>
+                                <option value="E">E (Colorless)</option>
+                                <option value="F">F (Colorless)</option>
+                                <option value="G">G (Near Colorless)</option>
+                                <option value="H">H (Near Colorless)</option>
+                                <option value="I">I (Near Colorless)</option>
+                                <option value="J">J (Near Colorless)</option>
+                            </select>
+                        </div>
                     </div>
                     
                     <div class="form-group">
                         <label for="clarity">Clarity Grade</label>
-                        <select id="clarity" name="clarity" required>
-                            <option value="" disabled selected>Select clarity grade</option>
-                            <option value="I1">I1 (Included)</option>
-                            <option value="SI2">SI2 (Slightly Included)</option>
-                            <option value="SI1">SI1 (Slightly Included)</option>
-                            <option value="VS2">VS2 (Very Slightly Included)</option>
-                            <option value="VS1">VS1 (Very Slightly Included)</option>
-                            <option value="VVS2">VVS2 (Very, Very Slightly Included)</option>
-                            <option value="VVS1">VVS1 (Very, Very Slightly Included)</option>
-                            <option value="IF">IF (Internally Flawless)</option>
-                        </select>
+                        <div class="input-wrapper">
+                            <i class="fas fa-magnifying-glass"></i>
+                            <select id="clarity" name="clarity" required>
+                                <option value="" disabled selected>Select clarity grade</option>
+                                <option value="I1">I1 (Included)</option>
+                                <option value="SI2">SI2 (Slightly Included)</option>
+                                <option value="SI1">SI1 (Slightly Included)</option>
+                                <option value="VS2">VS2 (Very Slightly Included)</option>
+                                <option value="VS1">VS1 (Very Slightly Included)</option>
+                                <option value="VVS2">VVS2 (Very, Very Slightly Included)</option>
+                                <option value="VVS1">VVS1 (Very, Very Slightly Included)</option>
+                                <option value="IF">IF (Internally Flawless)</option>
+                            </select>
+                        </div>
                     </div>
                     
-                    <button type="submit" class="btn btn-submit">Predict Price</button>
+                    <button type="submit" class="btn btn-submit">
+                        <i class="fas fa-calculator"></i>
+                        Predict Diamond Price
+                    </button>
                 </div>
             </form>
         </div>
@@ -254,7 +383,7 @@
         {% if final_result %}
         <div class="result-container">
             <p class="result-title">Predicted Diamond Price</p>
-            <p class="result-value">${{final_result}}</p>
+            <p class="result-value">{{final_result}}</p>
         </div>
         {% endif %}
     </div>
