@@ -1,6 +1,6 @@
---only-binary :all:
 Flask==2.3.2
-pandas==2.1.3  # Updated version with pre-built wheels
+pandas==2.2.3  # Latest stable with pre-built wheels
 scikit-learn==1.5.2
 gunicorn==21.2.0
 waitress==2.1.2
+numpy==1.26.4  # Required compatible version
