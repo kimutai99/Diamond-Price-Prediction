@@ -1,0 +1,7 @@
+[tool.poetry.dependencies]
+python = "^3.10"
+Flask = "2.3.2"
+gunicorn = "21.2.0"
+pandas = "2.0.3"
+scikit-learn = "1.5.2"
+waitress = "2.1.2"
